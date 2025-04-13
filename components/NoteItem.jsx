@@ -1,4 +1,5 @@
 import React from 'react'
+import { View, Text, StyleSheet } from 'react-native';
 
 function NoteItem({ note }) {
   return (
@@ -7,5 +8,16 @@ function NoteItem({ note }) {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  noteItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#f5f5f5',
+    padding: 15,
+    borderRadius: 5,
+    marginVertical: 5,
+   },
+});
 
 export default NoteItem
