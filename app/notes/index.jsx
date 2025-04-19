@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { 
-    View, 
-    Text, 
-    StyleSheet, 
-    TouchableOpacity,
-} from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+ 
+} from 'react-native';
+
 import NoteList from "@/components/NoteList";
 import AddNoreModal from "@/components/AddNoteModal";
 
