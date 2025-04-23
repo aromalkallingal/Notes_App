@@ -21,6 +21,8 @@ const databaseService = {
             return {
                 error: error.message,
             }
+
+            return {data: response};
         }
     }
 };
