@@ -39,6 +39,29 @@ const NoteScreen = () => {
       }
 
       setLoading(false);
+    };
+
+    // Delete Note
+
+    const deleteNote = async (id) => {
+        Alert.alert('Delete Note', 'Are you sure you want to delete this note?', [
+          {
+            text:'Cancel',
+            style:'cancel'
+          },
+          {
+            text: 'Delete',
+            style: 'destructive',
+            onPress: async () => {
+              const response = await noteService.deleteNote(id);
+              if(response.error) {
+                Alert.alert('Error', response.error);
+              }else {
+                setNotes(notes.filter((note) => note.$id !== id))
+              }
+            }
+          }
+        ])
     }
 
 
@@ -65,7 +88,7 @@ const NoteScreen = () => {
           ) : (
             <>
             {error && <Text style={styles.errorText}>{error}</Text>}
-            <NoteList notes={notes}/>
+            <NoteList notes={notes} onDelete={deleteNote}/>
             </>
           )}
 

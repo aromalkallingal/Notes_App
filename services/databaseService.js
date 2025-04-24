@@ -1,5 +1,6 @@
 import {database} from './appwrite'
 
+
 const databaseService = {
     // List Documents
     async listDocuments(dbId, colId) {
@@ -21,10 +22,22 @@ const databaseService = {
             return {
                 error: error.message,
             }
-
-            return {data: response};
         }
-    }
+    },
+    
+    // Delete Document
+    async deleteDocument(dbId, colId, id) {
+        try {
+           await database.deleteDocument(dbId, colId, id);
+           return {success: true} ;
+        } catch (error) {
+            console.error('Error deleting document', error.message);
+            return {
+                error: error.message,
+            };
+        }
+        return { success: true };
+    },
 };
 
 export default databaseService;

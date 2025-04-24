@@ -1,10 +1,13 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-function NoteItem({ note }) {
+function NoteItem({ note, onDelete }) {
   return (
     <View style={styles.noteItem}>
         <Text style={styles.noteText}>{note.text}</Text>
+        <TouchableOpacity onPress={()=> onDelete(note.$id)}>
+            <Text style={styles.delete}>X</Text>
+        </TouchableOpacity>
     </View>
   )
 }
@@ -18,6 +21,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginVertical: 5,
    },
+
+  delete: {
+    fontSize: 18,
+    color: 'red',
+  }
 });
 
 export default NoteItem
