@@ -33,7 +33,7 @@ const databaseService = {
                 console.error('Error updating document', error.message);
             return {
                 error: error.message,
-            }
+            };
             }
         },
     // Delete Document

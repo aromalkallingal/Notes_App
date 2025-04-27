@@ -1,13 +1,18 @@
 import React from 'react'
 import { useState, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { TextInput } from 'react-native-web';
+import { TextInput } from 'react-native';
 
-function NoteItem({ note, onDelete }) {
-
+const NoteItem = ({ note, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(note.text);
   const inputRef = useRef(null);
+
+  const handleSave = () => {
+    if(editedText.trim() === '') return;
+    onEdit(note.$id, editedText);
+    setIsEditing(false);
+  }
 
   return (
     <View style={styles.noteItem}>
@@ -26,10 +31,26 @@ function NoteItem({ note, onDelete }) {
         <Text style={styles.noteText}>{note.text}</Text>
       ) }
 
-        
+        <View style={styles.actions}>
+          {isEditing ? (
+            <TouchableOpacity onPress={() => {
+              handleSave();  
+              inputRef.current?.blur();
+            }}>
+              <Text style={styles.edit}>💾</Text>
+
+            </TouchableOpacity>
+          ): (
+            <TouchableOpacity onPress={()=> setIsEditing(true)}>
+            <Text style={styles.edit}>✏️</Text>
+        </TouchableOpacity>
+          )}
+
         <TouchableOpacity onPress={()=> onDelete(note.$id)}>
             <Text style={styles.delete}>X</Text>
         </TouchableOpacity>
+        </View>
+        
     </View>
   )
 }
@@ -47,6 +68,16 @@ const styles = StyleSheet.create({
   delete: {
     fontSize: 18,
     color: 'red',
+  },
+
+  actions: {
+    flexDirection: 'row',
+  },
+
+  edit:{
+    fontSize: 18,
+    marginRight: 10,
+    color: 'blue'
   }
 });
 
