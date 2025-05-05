@@ -26,6 +26,6 @@ switch (Platform.OS) {
 
 const database = new Databases(client);
 
-const account = newAccount(client)
+const account = new Account(client)
 
 export { database, config, client, account };
