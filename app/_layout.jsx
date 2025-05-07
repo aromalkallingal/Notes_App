@@ -1,7 +1,10 @@
 import { Stack } from "expo-router";
+import {AuthProvider} from '@/contexts/AuthContext';
 
 const RootLayout = () => {
-  return <Stack 
+  return 
+  <AuthProvider>
+  <Stack 
     screenOptions={{
       headerStyle: {
         backgroundColor: '#ff8c00'
@@ -20,6 +23,7 @@ const RootLayout = () => {
       <Stack.Screen name="index" options={{title: 'Home'}} />
       <Stack.Screen name="notes" options={{headerTitle: 'Notes'}} />
     </Stack>;
+    </AuthProvider>
 };
 
 export default RootLayout;
