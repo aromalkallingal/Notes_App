@@ -8,6 +8,8 @@ import {
 
  
 } from 'react-native';
+import  { useRouter } from 'expo-router';
+import {useAuth} from'@/contexts/AuthContext';
 
 import NoteList from "@/components/NoteList";
 import AddNoreModal from "@/components/AddNoteModal";
